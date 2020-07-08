@@ -3,3 +3,7 @@
 
 // Importing all of Bulma
 @import '~bulma/bulma.sass';
+
+html {
+  overflow-y: auto;
+}
