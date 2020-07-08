@@ -5,8 +5,8 @@ import { Link, route } from 'preact-router';
 import Footer from 'components/Core/footer';
 
 import Login from './login';
-// import ForgottenPassword from './forgottenPassword';
-// import Register from './register';
+import ForgottenPassword from './forgottenPassword';
+import Register from './register';
 
 import './style.scss';
 
@@ -30,7 +30,7 @@ const Auth: FunctionalComponent<IProps> = (props: IProps) => {
         switch (props.subPage) {
             case SubPage.login:
                 setTitle('Login');
-                setSubtitle('Please provide your credentials to proceed.');
+                setSubtitle('Please provide your credentials to proceed');
                 setForm(<Login />);
                 setLinks(
                     <Fragment>
@@ -40,30 +40,30 @@ const Auth: FunctionalComponent<IProps> = (props: IProps) => {
                     </Fragment>,
                 );
                 break;
-            // case SubPage.forgottenPassword:
-            //     setTitle('Forgotten Password');
-            //     setSubtitle('Please provide the email address associated with your account');
-            //     setForm(<ForgottenPassword />);
-            //     setLinks(
-            //         <Fragment>
-            //             <Link href="/auth/register">Sign Up</Link>
-            //             &nbsp;·&nbsp;
-            //             <Link href="/auth/login">Login</Link>
-            //         </Fragment>,
-            //     );
-            //     break;
-            // case SubPage.register:
-            //     setTitle('Register');
-            //     setSubtitle('Please provide your details to proceed.');
-            //     setForm(<Register />);
-            //     setLinks(
-            //         <Fragment>
-            //             <Link href="/auth/login">Login</Link>
-            //             &nbsp;·&nbsp;
-            //             <Link href="/auth/forgotten-password">Forgot Password</Link>
-            //         </Fragment>,
-            //     );
-            //     break;
+            case SubPage.register:
+                setTitle('Register');
+                setSubtitle('Please provide your details to proceed');
+                setForm(<Register />);
+                setLinks(
+                    <Fragment>
+                        <Link href="/auth/login">Login</Link>
+                        &nbsp;·&nbsp;
+                        <Link href="/auth/forgotten-password">Forgot Password</Link>
+                    </Fragment>,
+                );
+                break;
+            case SubPage.forgottenPassword:
+                setTitle('Forgotten Password');
+                setSubtitle('Please provide the email address associated with your account');
+                setForm(<ForgottenPassword />);
+                setLinks(
+                    <Fragment>
+                        <Link href="/auth/register">Sign Up</Link>
+                        &nbsp;·&nbsp;
+                        <Link href="/auth/login">Login</Link>
+                    </Fragment>,
+                );
+                break;
             default:
                 route('/auth/login', true);
         }
