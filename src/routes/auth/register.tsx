@@ -1,10 +1,10 @@
 import { FunctionalComponent, h } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 import { useDispatch, useSelector } from 'react-redux';
 import { LogIn } from 'preact-feather';
 
 import { RootState } from 'stores';
-import { logout, register, resetAuthErrors } from 'stores/authStore';
+import { register, resetAuthErrors } from 'stores/authStore';
 
 const Register: FunctionalComponent = () => {
     const dispatch = useDispatch();
@@ -14,10 +14,6 @@ const Register: FunctionalComponent = () => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    useEffect(() => {
-        dispatch(logout());
-    }, [dispatch]);
 
     const submitDetails = async (): Promise<void> => {
         await dispatch(register({ user: { firstName, lastName, email, password } }));

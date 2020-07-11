@@ -1,8 +1,10 @@
 import { ComponentChild, FunctionalComponent, Fragment, h } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import { Link, route } from 'preact-router';
+import { useDispatch } from 'react-redux';
 
 import Footer from 'components/Core/footer';
+import { logout } from 'stores/authStore';
 
 import Login from './login';
 import ForgottenPassword from './forgottenPassword';
@@ -21,6 +23,8 @@ enum SubPage {
 }
 
 const Auth: FunctionalComponent<IProps> = (props: IProps) => {
+    const dispatch = useDispatch();
+
     const [title, setTitle] = useState<string>('');
     const [subtitle, setSubtitle] = useState<string>('');
     const [form, setForm] = useState<ComponentChild>(null);
@@ -68,6 +72,10 @@ const Auth: FunctionalComponent<IProps> = (props: IProps) => {
                 route('/auth/login', true);
         }
     }, [props.subPage]);
+
+    useEffect(() => {
+        dispatch(logout());
+    }, [dispatch]);
 
     return (
         <div class="auth-page">

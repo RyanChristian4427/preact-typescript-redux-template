@@ -1,20 +1,16 @@
 import { FunctionalComponent, h } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 import { useDispatch, useSelector } from 'react-redux';
 import { LogIn } from 'preact-feather';
 
 import { RootState } from 'stores';
-import { logout, resetAuthErrors } from 'stores/authStore';
+import { resetAuthErrors } from 'stores/authStore';
 
 const ForgottenPassword: FunctionalComponent = () => {
     const dispatch = useDispatch();
     const { error, inProgress } = useSelector((state: RootState) => state.auth);
 
     const [email, setEmail] = useState('');
-
-    useEffect(() => {
-        dispatch(logout());
-    }, [dispatch]);
 
     const submitDetails = (): void => {
         // Do something with this
