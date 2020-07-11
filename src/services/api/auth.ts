@@ -1,6 +1,7 @@
-import { ApiResponse, apiService } from './index';
+import { apiService } from 'ts-api-toolkit';
 
 import { LoginUser, RegistrationUser, User } from 'models/User';
+import { ApiResponse } from 'services/api';
 
 export const apiLogin = async (credentials: LoginUser): ApiResponse<User> => {
     try {

@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { route } from 'preact-router';
+import { authStorageService } from 'ts-api-toolkit';
 
 import { LoginUser, RegistrationUser, User } from 'models/User';
-import { authStorageService } from 'services/api';
 import { apiLogin, apiRegister } from 'services/api/auth';
 import { AppThunk } from 'stores';
 
