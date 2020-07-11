@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { authStorageService } from 'ts-api-toolkit';
 import { route } from 'preact-router';
 
 import { LoginUser, RegistrationUser, User } from 'models/User';
-import { apiLogin, apiRegister } from 'services/api';
+import { authStorageService } from 'services/api';
+import { apiLogin, apiRegister } from 'services/api/auth';
 import { AppThunk } from 'stores';
 
 type State = {
@@ -34,6 +34,7 @@ const slice = createSlice({
             state.error = '';
         },
         loginSuccess: (state: State, action: PayloadAction<User>): void => {
+            authStorageService.saveToken(action.payload.token);
             state.inProgress = false;
             state.isAuthenticated = true;
             state.currentUser = action.payload;
@@ -47,6 +48,7 @@ const slice = createSlice({
             state.error = '';
         },
         registerSuccess: (state: State, action: PayloadAction<User>): void => {
+            authStorageService.saveToken(action.payload.token);
             state.inProgress = false;
             state.isAuthenticated = true;
             state.currentUser = action.payload;
@@ -74,30 +76,24 @@ export const {
     resetAuthErrors,
 } = slice.actions;
 
-function isUser(result: User | string): result is User {
-    return !!(result as User).token;
-}
-
 export const login = (credentials: LoginUser): AppThunk => async (dispatch) => {
     dispatch(loginStart());
-    const result = await apiLogin(credentials);
-    if (isUser(result)) {
-        authStorageService.saveToken(result.token);
-        await dispatch(loginSuccess(result));
+    const result = await apiLogin(credentials).catch((error) => {
+        dispatch(loginFailure(error));
+    });
+    if (result) {
+        dispatch(loginSuccess(result));
         route('/');
-    } else {
-        await dispatch(loginFailure(result));
     }
 };
 
 export const register = (credentials: RegistrationUser): AppThunk => async (dispatch) => {
     dispatch(registerStart());
-    const result = await apiRegister(credentials);
-    if (isUser(result)) {
-        authStorageService.saveToken(result.token);
-        await dispatch(registerSuccess(result));
+    const result = await apiRegister(credentials).catch((error) => {
+        dispatch(registerFailure(error));
+    });
+    if (result) {
+        dispatch(registerSuccess(result));
         route('/');
-    } else {
-        await dispatch(registerFailure(result));
     }
 };
