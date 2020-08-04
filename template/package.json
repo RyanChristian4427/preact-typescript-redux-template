@@ -3,10 +3,10 @@
   "name": "{{ name }}",
   "version": "0.1.0",
   "scripts": {
-    "serve:dev": "preact watch -p 3000 --refresh",
+    "serve:dev": "preact watch -p 3000 --template src/template.html --refresh",
     "serve:prod": "yarn build && sirv build -p 3000 --single",
     "build": "preact build --template src/template.html",
-    "build:analyze": "yarn build --no-esm --analyze",
+    "build:analyze": "yarn build --no-prerender --no-esm --analyze",
     "lint": "yarn eslint --fix && yarn prettier --write",
     "lint:ci": "yarn eslint && yarn prettier",
     "eslint": "eslint 'src/**/*.{js,ts,tsx}' '*.js'",

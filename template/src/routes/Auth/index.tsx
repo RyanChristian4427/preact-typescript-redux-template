@@ -3,7 +3,7 @@ import { useEffect, useState } from 'preact/hooks';
 import { Link, route } from 'preact-router';
 import { useDispatch } from 'react-redux';
 
-import Footer from 'components/Core/footer';
+import Footer from 'components/Core/Footer';
 import { logout } from 'stores/authStore';
 
 import Login from './login';

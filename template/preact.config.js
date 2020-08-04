@@ -14,17 +14,16 @@ export default {
         const css = helpers.getLoadersByName(config, 'css-loader')[0];
         css.loader.options.modules = false;
 
-        // Sets default import to 'src/'
-        config.resolve.modules.push(env.src);
-
         const purgecss = purgeCss({
-            content: ['./src/**/*.tsx', './src/**/*.ts', './src/**/*.scss'],
+            content: ['src/**/*.tsx', 'src/**/*.ts', 'src/**/*.scss'],
             whitelist: ['html', 'body'],
-            defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
         });
 
         const postCss = helpers.getLoadersByName(config, 'postcss-loader')[0];
         if (env.production) postCss.loader.options.plugins.push(purgecss);
+
+        // Sets default import to 'src/'
+        config.resolve.modules.push(env.src);
 
         if (!env.isProd) {
             config.devServer.proxy = [

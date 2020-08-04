@@ -3,11 +3,11 @@ import { useEffect } from 'preact/hooks';
 import { Suspense } from 'preact/compat';
 import { route, Route, Router } from 'preact-router';
 import { useSelector, Provider } from 'react-redux';
-
-import Auth from 'routes/auth';
-import Home from 'routes/home';
-import redux, { RootState } from 'stores';
 import { PersistGate } from 'redux-persist/integration/react';
+
+import Auth from 'routes/Auth';
+import Home from 'routes/Home';
+import redux, { RootState } from 'stores';
 
 const App: FunctionalComponent = () => {
     return (

@@ -1,7 +1,7 @@
 import { FunctionalComponent, h } from 'preact';
 
-import Footer from 'components/Core/footer';
-import Header from 'components/Core/header';
+import Footer from 'components/Core/Footer';
+import Header from 'components/Core/Header';
 
 import './style.scss';
 
