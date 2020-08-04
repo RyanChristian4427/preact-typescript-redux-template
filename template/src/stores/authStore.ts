@@ -29,9 +29,13 @@ const slice = createSlice({
             state.isAuthenticated = false;
             state.currentUser = undefined;
         },
-        loginStart: (state: State): void => {
+        authStart: (state: State): void => {
             state.inProgress = true;
             state.error = '';
+        },
+        authFailure: (state: State, action: PayloadAction<string>): void => {
+            state.inProgress = false;
+            state.error = action.payload;
         },
         loginSuccess: (state: State, action: PayloadAction<User>): void => {
             authStorageService.saveToken(action.payload.token);
@@ -39,23 +43,11 @@ const slice = createSlice({
             state.isAuthenticated = true;
             state.currentUser = action.payload;
         },
-        loginFailure: (state: State, action: PayloadAction<string>): void => {
-            state.inProgress = false;
-            state.error = action.payload;
-        },
-        registerStart: (state: State): void => {
-            state.inProgress = true;
-            state.error = '';
-        },
         registerSuccess: (state: State, action: PayloadAction<User>): void => {
             authStorageService.saveToken(action.payload.token);
             state.inProgress = false;
             state.isAuthenticated = true;
             state.currentUser = action.payload;
-        },
-        registerFailure: (state: State, action: PayloadAction<string>): void => {
-            state.inProgress = false;
-            state.error = action.payload;
         },
         resetAuthErrors: (state: State): void => {
             state.error = '';
@@ -65,35 +57,24 @@ const slice = createSlice({
 export default slice.reducer;
 
 // Actions
-export const {
-    logout,
-    loginStart,
-    loginFailure,
-    loginSuccess,
-    registerStart,
-    registerFailure,
-    registerSuccess,
-    resetAuthErrors,
-} = slice.actions;
+export const { logout, authStart, authFailure, loginSuccess, registerSuccess, resetAuthErrors } = slice.actions;
 
 export const login = (credentials: LoginUser): AppThunk => async (dispatch) => {
-    dispatch(loginStart());
-    const result = await apiLogin(credentials).catch((error) => {
-        dispatch(loginFailure(error));
-    });
-    if (result) {
-        dispatch(loginSuccess(result));
+    dispatch(authStart());
+    try {
+        dispatch(loginSuccess(await apiLogin(credentials)));
         route('/');
+    } catch (error) {
+        dispatch(authFailure(error));
     }
 };
 
 export const register = (credentials: RegistrationUser): AppThunk => async (dispatch) => {
-    dispatch(registerStart());
-    const result = await apiRegister(credentials).catch((error) => {
-        dispatch(registerFailure(error));
-    });
-    if (result) {
-        dispatch(registerSuccess(result));
+    dispatch(authStart());
+    try {
+        dispatch(loginSuccess(await apiRegister(credentials)));
         route('/');
+    } catch (error) {
+        dispatch(authFailure(error));
     }
 };
