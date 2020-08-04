@@ -2,7 +2,7 @@
 
 This is a template project used to bootstrap a new Preact App. This is built using the Preact-CLI.
 
-This template includes routing, global state management, Typescript, SCSS with Bulma, as well as easy API requests with Redaxios and JWT management.
+This template includes TypeScript, global state management with Redux, routing, SCSS with Bulma, and easy API requests with Redaxios.
 
 ## Getting Started
 
