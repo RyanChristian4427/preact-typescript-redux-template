@@ -1,9 +1,7 @@
 {
-  "name": "preact-typescript-redux-template",
-  "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/RyanChristian4427/preact-typescript-redux-template",
-  "repository": "https://github.com/RyanChristian4427/preact-typescript-redux-template",
+  "name": "{{ name }}",
+  "version": "0.1.0",
   "scripts": {
     "serve:dev": "preact watch -p 3000 --refresh",
     "serve:prod": "yarn build && sirv build -p 3000 --single",

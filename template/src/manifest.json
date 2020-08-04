@@ -1,6 +1,6 @@
 {
-  "name": "Preact Typescript Redux Template Application",
-  "short_name": "Preact Template",
+  "name": "{{ name }}",
+  "short_name": "{{ name }}",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",

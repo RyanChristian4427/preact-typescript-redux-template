@@ -2,7 +2,7 @@
 
 This is a template project used to bootstrap a new Preact App. This is built using the Preact-CLI.
 
-This template includes routing, global state management, Typescript, SCSS (Bulma, to be specific) as well as easy API requests with Axios and JWT management.
+This template includes routing, global state management, Typescript, SCSS (Bulma, to be specific) as well as easy API requests with Redaxios and JWT management.
 
 ## Getting Started
 
@@ -39,7 +39,7 @@ npm run serve:prod / yarn serve:prod
 
 ## Code Style
 
-The code is formatted to the linting rules found in [.eslintrc.js](.eslintrc.js).
+The code is formatted to the linting rules found in [.eslintrc.js](template/.eslintrc.js).
 
 ### Run Linter
 
