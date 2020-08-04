@@ -2,50 +2,18 @@
 
 This is a template project used to bootstrap a new Preact App. This is built using the Preact-CLI.
 
-This template includes routing, global state management, Typescript, SCSS (Bulma, to be specific) as well as easy API requests with Redaxios and JWT management.
+This template includes routing, global state management, Typescript, SCSS with Bulma, as well as easy API requests with Redaxios and JWT management.
 
-## Getting Started
+## Usage
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Node
-NPM/Yarn
+```bash
+$ npx preact-cli create ryanchristian4427/preact-typescript-redux-template my-project-name --yarn
+$ cd my-project
+$ yarn serve:dev
 ```
 
-### Running
-
-Firstly, you will need to install the project dependencies. From the project root, run:
-
-```
-npm run install / yarn
-```
-
-Once the dependencies are installed, to start a dev server, run:
-
-```
-npm run serve:dev / yarn serve:dev
-```
-
-...or for a production server:
-
-```
-npm run serve:prod / yarn serve:prod
-```
-
-## Code Style
-
-The code is formatted to the linting rules found in [.eslintrc.js](template/.eslintrc.js).
-
-### Run Linter
-
-```
-npm run lint / yarn lint
-```
+Development server runs on port `3000`. If the default port is already in use on
+your machine it will start the development server on a random port.
 
 ## Built With
 
