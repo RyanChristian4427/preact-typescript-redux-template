@@ -10,7 +10,6 @@ export default {
      * @param {WebpackConfigHelpers} helpers - object with useful helpers for working with the webpack config.
      * @param {object} options - this is mainly relevant for plugins (will always be empty in the config), default to an empty object
      **/
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     webpack(config, env, helpers, options) {
         const css = helpers.getLoadersByName(config, 'css-loader')[0];
         css.loader.options.modules = false;
@@ -20,6 +19,7 @@ export default {
 
         const purgecss = purgeCss({
             content: ['./src/**/*.tsx', './src/**/*.ts', './src/**/*.scss'],
+            whitelist: ['html', 'body'],
             defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
         });
 
