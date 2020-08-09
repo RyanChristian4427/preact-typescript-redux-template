@@ -12,6 +12,15 @@
     "eslint": "eslint 'src/**/*.{js,ts,tsx}' '*.js'",
     "prettier": "prettier 'src/**/*.{css,scss,json}' '*.json'"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{css,md,scss}": "prettier --write",
+    "*.{js,ts,tsx}": "eslint --fix"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
     "bulma": "^0.9.0",
@@ -32,6 +41,8 @@
     "eslint-config-preact": "^1.1.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "node-sass": "^4.14.1",
     "preact-cli": "^3.0.1",
     "prettier": "^2.0.5",
