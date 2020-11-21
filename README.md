@@ -7,7 +7,7 @@ This template includes TypeScript, global state management with Redux, routing, 
 ## Usage
 
 ```bash
-$ npx preact-cli create ryanchristian4427/preact-typescript-redux-template my-project --yarn
+$ npx preact-cli create rschristian/preact-typescript-redux-template my-project --yarn
 $ cd my-project
 $ yarn serve:dev
 ```
